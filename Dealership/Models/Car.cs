@@ -1,13 +1,16 @@
+using System.Collections.Generic;
 using System;
 
-namespace Dealership {
+namespace Dealership.Models
+{
 
-  class Car
+  public class Car
   {
-    private string MakeModel;
-    private int Price;
-    private int Miles;
-    private string Color;
+    public string MakeModel {get; set;}
+    public int Price {get; set;}
+    public int Miles {get; set;}
+    public string Color {get; set;}
+    private static List<Car> _instances = new List<Car> {};
 
     public Car(string makeModel, int price, int miles, string color)
     {
@@ -15,26 +18,11 @@ namespace Dealership {
       Price = price;
       Miles = miles;
       Color = color;
+      _instances.Add(this);
     }
-
-    public string GetMakeModel()
+    public static List<Car> GetAll()
     {
-      return MakeModel;
-    }
-
-    public int GetPrice()
-    {
-      return Price;
-    }
-
-    public int GetMiles()
-    {
-      return Miles;
-    }
-
-    public string GetColor()
-    {
-      return Color;
+      return _instances;
     }
 
     public bool WorthBuying(int maxPrice)
